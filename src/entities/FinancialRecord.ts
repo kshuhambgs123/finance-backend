@@ -123,6 +123,7 @@ export class FinancialRecord {
   }
 
   get monthYear(): string {
-    return this.date.toISOString().substring(0, 7); // YYYY-MM format
+    const date = this.date instanceof Date ? this.date : new Date(this.date);
+    return date.toISOString().substring(0, 7); // YYYY-MM format
   }
 }

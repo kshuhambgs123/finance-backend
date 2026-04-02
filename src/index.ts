@@ -3,7 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import swaggerUi from 'swagger-ui-express';
 import { AppDataSource } from './config/database';
+import { swaggerSpec } from './config/swagger';
 import { errorHandler } from './middleware/errorHandler';
 import { requestLogger } from './middleware/requestLogger';
 import authRoutes from './routes/auth.routes';
@@ -49,6 +51,27 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Swagger documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Finance Backend API Documentation',
+  swaggerOptions: {
+    persistAuthorization: true,
+    displayRequestDuration: true,
+    docExpansion: 'none',
+    filter: true,
+    showExtensions: true,
+    showCommonExtensions: true,
+    tryItOutEnabled: true
+  }
+}));
+
+// Redirect root to API docs
+app.get('/', (req, res) => {
+  res.redirect('/api-docs');
+});
+
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -81,6 +104,8 @@ async function startServer() {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`🔗 Health check: http://localhost:${PORT}/health`);
+      console.log(`📚 API Documentation: http://localhost:${PORT}/api-docs`);
+      console.log(`🔧 API Base URL: http://localhost:${PORT}/api`);
     });
   } catch (error) {
     console.error('❌ Error starting server:', error);

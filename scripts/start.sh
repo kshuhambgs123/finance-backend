@@ -48,6 +48,7 @@ if [ "$ENVIRONMENT" = "production" ]; then
     echo "📊 API: http://localhost:3000"
     echo "🗄️  Database: localhost:5432"
     echo "📋 Health Check: http://localhost:3000/health"
+    echo "📚 Swagger Docs: http://localhost:3000/api-docs"
     
 else
     echo "🏗️  Starting development services..."
@@ -63,6 +64,7 @@ else
     echo "📊 API: http://localhost:3000"
     echo "🗄️  Database: localhost:5432"
     echo "📋 Health Check: http://localhost:3000/health"
+    echo "📚 Swagger Docs: http://localhost:3000/api-docs"
     echo "🔄 Hot reload enabled for development"
 fi
 
@@ -72,7 +74,8 @@ echo "   Admin: admin@finance.com / admin123"
 echo "   Analyst: analyst@finance.com / analyst123"
 echo "   Viewer: viewer@finance.com / viewer123"
 echo ""
-echo "📚 API Documentation: Check README.md for endpoint details"
+echo "📚 Swagger API Documentation: http://localhost:3000/api-docs"
+echo "📋 Health Check: http://localhost:3000/health"
 echo "🛑 To stop: docker-compose down"
 echo ""
 echo "🎉 Application started successfully!"

@@ -119,6 +119,19 @@ make setup-prod
 http://localhost:3000/api
 ```
 
+### Interactive API Documentation
+Visit the Swagger UI for interactive API documentation and testing:
+```
+http://localhost:3000/api-docs
+```
+
+The Swagger documentation provides:
+- Complete API reference with request/response examples
+- Interactive testing interface
+- Authentication support
+- Schema definitions
+- Real-time API testing
+
 ### Authentication Endpoints
 
 #### Register User
