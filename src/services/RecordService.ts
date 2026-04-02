@@ -4,7 +4,7 @@ import { User, UserRole } from '../entities/User';
 import { AppError } from '../utils/AppError';
 import { CreateRecordDto, UpdateRecordDto, RecordQueryDto } from '../dto/record.dto';
 import { PaginationResult, getPaginationParams, createPaginationResult } from '../utils/pagination';
-import { Between, Like, FindManyOptions, MoreThanOrEqual, LessThanOrEqual } from 'typeorm';
+import { Between, Like, FindManyOptions, MoreThanOrEqual, LessThanOrEqual, In } from 'typeorm';
 
 export class RecordService {
   private recordRepository = AppDataSource.getRepository(FinancialRecord);
@@ -192,7 +192,7 @@ export class RecordService {
     }
 
     await this.recordRepository.update(
-      ids,
+      { id: In(ids) },
       { isDeleted: true }
     );
   }

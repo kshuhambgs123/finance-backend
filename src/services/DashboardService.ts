@@ -1,6 +1,7 @@
 import { AppDataSource } from '../config/database';
 import { FinancialRecord, RecordType, RecordCategory } from '../entities/FinancialRecord';
 import { User } from '../entities/User';
+import { MoreThanOrEqual, Between } from 'typeorm';
 
 export interface DashboardSummary {
   totalIncome: number;
